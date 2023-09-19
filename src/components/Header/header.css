@@ -1,0 +1,13 @@
+.header {
+    display: flex;
+    width: 100%;
+    background-color: black;
+    height: 5rem;
+    color: #FFF;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.title {
+    font-size: 3rem;
+}
