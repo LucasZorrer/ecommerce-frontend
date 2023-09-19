@@ -1,0 +1,14 @@
+.links-container {
+  width: 100%;
+  height: 5rem;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.links {
+    background-color: #FFFF;
+    width: 100%;
+    height: 60%;
+}
