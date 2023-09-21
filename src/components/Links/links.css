@@ -17,6 +17,7 @@
 
 .link {
   padding: 0 1rem;
+  background-color: white;
 }
 
 .links a {
@@ -24,6 +25,7 @@
   color: black;
   padding: 4px;
   transition: 0.5s;
+  background-color: white;
 }
 
 .links a:hover {

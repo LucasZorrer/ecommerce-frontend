@@ -5,5 +5,36 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  font-size: 1rem;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.categories-container {
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  padding: 0 3rem;
+  color: #fff;
+  margin-top: 1rem;
+}
+
+.categories-container select {
+  padding: 0.4rem;
+  color: #fff;
+  border: none;
+}
+
+.categories-container select:hover {
+  background-color: #d95d39;
+}
+
+.categories-container option{
+  background-color: #d95d39;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
