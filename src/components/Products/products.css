@@ -1,0 +1,9 @@
+.products {
+  width: 100%;
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
