@@ -1,0 +1,21 @@
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 2rem;
+  border-radius: 10px;
+}
+
+.button-container button {
+  cursor: pointer;
+  border-radius: 10px;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  background-color: #d95d39;
+}
+
+.button-container button:hover {
+    background-color: #f35124;
+}
