@@ -4,20 +4,54 @@ import "./login.css";
 import Button from "../../components/Button/Button";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [messageError, setMessageError] = useState("");
 
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
+  //LOGIN SECTION //
+  const [emailLogin, setEmailLogin] = useState("");
+  const [passwordLogin, setPasswordLogin] = useState("");
+
+  const handleEmailLogin = (e) => {
+    setEmailLogin(e.target.value);
   };
 
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
+  const handlePasswordLogin = (e) => {
+    setPasswordLogin(e.target.value);
   };
 
   const handleSubmitLogin = (e) => {
     e.preventDefault();
-    console.log(email, password);
+    console.log(emailLogin, passwordLogin);
+  };
+
+  // SIGNUP SECTION //
+
+  const [nameSignup, setNameSignup] = useState("");
+  const [emailSignup, setEmailSignup] = useState("");
+  const [passwordSignup, setPasswordSignup] = useState("");
+  const [passwordVerify, setPasswordVerify] = useState("");
+
+  const handleNameSignup = (e) => {
+    setNameSignup(e.target.value);
+  };
+  const handleEmailSignup = (e) => {
+    setEmailSignup(e.target.value);
+  };
+  const handlePasswordSignup = (e) => {
+    setMessageError("")
+    setPasswordSignup(e.target.value);
+  };
+  const handlePasswordVerify = (e) => {
+    setMessageError("")
+    setPasswordVerify(e.target.value);
+  };
+
+  const handleSubmitSignup = (e) => {
+    e.preventDefault();
+    if (passwordSignup !== passwordVerify) {
+      setMessageError("The passwords must be the same!");
+      return;
+    }
+    console.log("nice");
   };
 
   return (
@@ -28,14 +62,14 @@ const Login = () => {
           <Input
             name={"Email"}
             type={"email"}
-            value={email}
-            onChange={handleEmail}
+            value={emailLogin}
+            onChange={handleEmailLogin}
           />
           <Input
             name={"Password"}
             type={"password"}
-            value={password}
-            onChange={handlePassword}
+            value={passwordLogin}
+            onChange={handlePasswordLogin}
           />
           <div className="button-container">
             <Button name={"Login"} />
@@ -44,6 +78,36 @@ const Login = () => {
       </div>
       <div className="sub-containers">
         <h1>Signup</h1>
+        <form onSubmit={handleSubmitSignup} className="form-container">
+          <Input
+            name={"name"}
+            type={"text"}
+            value={nameSignup}
+            onChange={handleNameSignup}
+          />
+          <Input
+            name={"Email"}
+            type={"email"}
+            value={emailSignup}
+            onChange={handleEmailSignup}
+          />
+          <Input
+            name={"Password"}
+            type={"password"}
+            value={passwordSignup}
+            onChange={handlePasswordSignup}
+          />
+          <Input
+            name={"Password"}
+            type={"password"}
+            value={passwordVerify}
+            onChange={handlePasswordVerify}
+          />
+          <span className="message-error">{messageError}</span>
+          <div className="button-container">
+            <Button name={"Signup"} />
+          </div>
+        </form>
       </div>
     </div>
   );
