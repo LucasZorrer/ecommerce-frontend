@@ -5,8 +5,21 @@ import {
   MagnifyingGlass,
 } from "@phosphor-icons/react";
 import "./header.css";
+import { useStateContext } from "../../contexts/ContextProvider";
+import { useEffect } from "react";
+import apiAuth from "../../helpers/axiosClient";
 
 const Header = () => {
+  const { user, token, setUser, setToken } = useStateContext();
+
+  useEffect(() => {
+    apiAuth.get("/user").then(({ data }) => {
+      setUser(data);
+    });
+  }, []);
+
+  console.log(user);
+
   return (
     <div className="header">
       <h6 className="title">TWIN</h6>
@@ -22,20 +35,25 @@ const Header = () => {
           <Bell size={40} />
         </div>
         <div className="profile-image-container">
-          {/* <img
-            src="https://i.pinimg.com/1200x/a7/cb/fa/a7cbfaaf0c56b3d80328fdad51b48f78.jpg"
-            alt=""
-          />
-
-          <div className="dropdown">
-            <CaretDown size={40} />
-            <div className="dropdown-content">
-              <a href="#">Profile</a>
-              <a href="#">My Products</a>
-              <a href="#">Logout</a>
-            </div>
-          </div> */}
+          {token === null ? (
             <p className="not-logged">Hello, Sign In!</p>
+          ) : (
+            <>
+              {" "}
+              <img
+                src="https://i.pinimg.com/1200x/a7/cb/fa/a7cbfaaf0c56b3d80328fdad51b48f78.jpg"
+                alt=""
+              />
+              <div className="dropdown">
+                <CaretDown size={40} />
+                <div className="dropdown-content">
+                  <a href="#">Profile</a>
+                  <a href="#">My Products</a>
+                  <a href="#">Logout</a>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

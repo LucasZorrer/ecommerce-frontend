@@ -2,6 +2,8 @@ import { useState } from "react";
 import Input from "../../components/Input/Input";
 import "./login.css";
 import Button from "../../components/Button/Button";
+import apiAuth from "../../helpers/axiosClient";
+import { useStateContext } from "../../contexts/ContextProvider";
 
 const Login = () => {
   const [messageError, setMessageError] = useState("");
@@ -9,6 +11,7 @@ const Login = () => {
   //LOGIN SECTION //
   const [emailLogin, setEmailLogin] = useState("");
   const [passwordLogin, setPasswordLogin] = useState("");
+  const { setUser, setToken } = useStateContext();
 
   const handleEmailLogin = (e) => {
     setEmailLogin(e.target.value);
@@ -18,9 +21,13 @@ const Login = () => {
     setPasswordLogin(e.target.value);
   };
 
-  const handleSubmitLogin = (e) => {
+  const handleSubmitLogin = async (e) => {
     e.preventDefault();
-    console.log(emailLogin, passwordLogin);
+    await apiAuth
+      .post("login", { email: emailLogin, password: passwordLogin })
+      .then(({ data }) => {
+        setUser(data.user), setToken(data.accessToken);
+      });
   };
 
   // SIGNUP SECTION //
@@ -37,11 +44,11 @@ const Login = () => {
     setEmailSignup(e.target.value);
   };
   const handlePasswordSignup = (e) => {
-    setMessageError("")
+    setMessageError("");
     setPasswordSignup(e.target.value);
   };
   const handlePasswordVerify = (e) => {
-    setMessageError("")
+    setMessageError("");
     setPasswordVerify(e.target.value);
   };
 
