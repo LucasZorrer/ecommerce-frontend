@@ -18,7 +18,8 @@
 }
 
 .input-container label {
-    color: #FFF;
+  color: #fff;
+  background-color: black;
 }
 
 .input-container input {

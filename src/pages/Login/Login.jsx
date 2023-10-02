@@ -1,32 +1,53 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "../../components/Input/Input";
 import "./login.css";
 import Button from "../../components/Button/Button";
 import apiAuth from "../../helpers/axiosClient";
 import { useStateContext } from "../../contexts/ContextProvider";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const [messageError, setMessageError] = useState("");
+  const [messageErrorLogin, setMessageErrorLogin] = useState("");
+  const [messageErrorSignup, setMessageErrorSignup] = useState("");
+  const [isLoadingLogin, setIsLoadingLogin] = useState(false);
+  const [isLoadingSignup, setIsLoadingSignup] = useState(false);
+  const { setUser, setToken } = useStateContext();
+  const navigate = useNavigate();
 
   //LOGIN SECTION //
   const [emailLogin, setEmailLogin] = useState("");
   const [passwordLogin, setPasswordLogin] = useState("");
-  const { setUser, setToken } = useStateContext();
 
   const handleEmailLogin = (e) => {
     setEmailLogin(e.target.value);
+    setMessageErrorLogin("");
   };
 
   const handlePasswordLogin = (e) => {
     setPasswordLogin(e.target.value);
+    setMessageErrorLogin("");
   };
 
   const handleSubmitLogin = async (e) => {
     e.preventDefault();
+    setIsLoadingLogin(true);
     await apiAuth
       .post("login", { email: emailLogin, password: passwordLogin })
       .then(({ data }) => {
-        setUser(data.user), setToken(data.accessToken);
+        if (data.success === false) {
+          setMessageErrorLogin(data.message);
+        } else {
+          toast.success("User Successfully Logged!", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+          setUser(data.user), setToken(data.accessToken);
+          navigate("/");
+        }
+      })
+      .finally(() => {
+        setIsLoadingLogin(false);
       });
   };
 
@@ -39,26 +60,47 @@ const Login = () => {
 
   const handleNameSignup = (e) => {
     setNameSignup(e.target.value);
+    setMessageErrorSignup("");
   };
   const handleEmailSignup = (e) => {
     setEmailSignup(e.target.value);
+    setMessageErrorSignup("");
   };
   const handlePasswordSignup = (e) => {
-    setMessageError("");
+    setMessageErrorSignup("");
     setPasswordSignup(e.target.value);
   };
   const handlePasswordVerify = (e) => {
-    setMessageError("");
+    setMessageErrorSignup("");
     setPasswordVerify(e.target.value);
   };
 
-  const handleSubmitSignup = (e) => {
+  const handleSubmitSignup = async (e) => {
     e.preventDefault();
+    setIsLoadingSignup(true);
     if (passwordSignup !== passwordVerify) {
-      setMessageError("The passwords must be the same!");
+      setMessageErrorSignup("The passwords must be the same!");
       return;
     }
-    console.log("nice");
+
+    await apiAuth
+      .post("signup", {
+        name: nameSignup,
+        email: emailSignup,
+        password: passwordSignup,
+      })
+      .then(({ data }) => {
+        if (data.success === false) {
+          setMessageErrorSignup(data.message);
+        } else {
+          toast.success("Successfully Changed!", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        }
+      })
+      .finally(() => {
+        setIsLoadingSignup(false);
+      });
   };
 
   return (
@@ -78,8 +120,9 @@ const Login = () => {
             value={passwordLogin}
             onChange={handlePasswordLogin}
           />
+          <span className="message-error">{messageErrorLogin}</span>
           <div className="button-container">
-            <Button name={"Login"} />
+            <Button name={"Login"} isLoading={isLoadingLogin} />
           </div>
         </form>
       </div>
@@ -87,7 +130,7 @@ const Login = () => {
         <h1>Signup</h1>
         <form onSubmit={handleSubmitSignup} className="form-container">
           <Input
-            name={"name"}
+            name={"Name"}
             type={"text"}
             value={nameSignup}
             onChange={handleNameSignup}
@@ -110,9 +153,9 @@ const Login = () => {
             value={passwordVerify}
             onChange={handlePasswordVerify}
           />
-          <span className="message-error">{messageError}</span>
+          <span className="message-error">{messageErrorSignup}</span>
           <div className="button-container">
-            <Button name={"Signup"} />
+            <Button name={"Signup"} isLoading={isLoadingSignup} />
           </div>
         </form>
       </div>
