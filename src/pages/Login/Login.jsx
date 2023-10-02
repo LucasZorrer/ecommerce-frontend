@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import Input from "../../components/Input/Input";
-import "./login.css";
-import Button from "../../components/Button/Button";
-import apiAuth from "../../helpers/axiosClient";
-import { useStateContext } from "../../contexts/ContextProvider";
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from 'react-router-dom';
+import Button from "../../components/Button/Button";
+import Input from "../../components/Input/Input";
+import { useStateContext } from "../../contexts/ContextProvider";
+import apiAuth from "../../helpers/axiosClient";
+import "./login.css";
 
 const Login = () => {
   const [messageErrorLogin, setMessageErrorLogin] = useState("");
@@ -93,7 +93,7 @@ const Login = () => {
         if (data.success === false) {
           setMessageErrorSignup(data.message);
         } else {
-          toast.success("Successfully Changed!", {
+          toast.success("User Successfully Created!", {
             position: toast.POSITION.TOP_RIGHT,
           });
         }

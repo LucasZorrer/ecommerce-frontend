@@ -4,10 +4,12 @@ import {
   CaretDown,
   MagnifyingGlass,
 } from "@phosphor-icons/react";
-import "./header.css";
-import { useStateContext } from "../../contexts/ContextProvider";
 import { useEffect } from "react";
+import { useStateContext } from "../../contexts/ContextProvider";
 import apiAuth from "../../helpers/axiosClient";
+import "./header.css";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const { user, token, setUser, setToken } = useStateContext();
@@ -19,6 +21,20 @@ const Header = () => {
   }, []);
 
   console.log(user);
+
+
+  const handleLogout = (e) => {
+    e.preventDefault()
+    apiAuth.delete("/logout").then(({data}) => {
+      if(data.success){
+        setUser({});
+        setToken(null);
+        toast.success("Logout Successfully done!", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
+    });
+  }
 
   return (
     <div className="header">
@@ -36,7 +52,10 @@ const Header = () => {
         </div>
         <div className="profile-image-container">
           {token === null ? (
-            <p className="not-logged">Hello, Sign In!</p>
+            <Link to={"/login"}>
+              {" "}
+              <p className="not-logged">Hello, Sign In!</p>
+            </Link>
           ) : (
             <>
               {" "}
@@ -49,7 +68,7 @@ const Header = () => {
                 <div className="dropdown-content">
                   <a href="#">Profile</a>
                   <a href="#">My Products</a>
-                  <a href="#">Logout</a>
+                  <a onClick={handleLogout}>Logout</a>
                 </div>
               </div>
             </>
