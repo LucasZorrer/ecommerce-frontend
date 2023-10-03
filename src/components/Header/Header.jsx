@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Header = () => {
-  const { user, token, setUser, setToken } = useStateContext();
+  const { token, setUser, setToken } = useStateContext();
 
   useEffect(() => {
     apiAuth.get("/user").then(({ data }) => {
@@ -20,13 +20,10 @@ const Header = () => {
     });
   }, []);
 
-  console.log(user);
-
-
   const handleLogout = (e) => {
-    e.preventDefault()
-    apiAuth.delete("/logout").then(({data}) => {
-      if(data.success){
+    e.preventDefault();
+    apiAuth.delete("/logout").then(({ data }) => {
+      if (data.success) {
         setUser({});
         setToken(null);
         toast.success("Logout Successfully done!", {
@@ -34,7 +31,19 @@ const Header = () => {
         });
       }
     });
-  }
+  };
+
+  const linkStyleHeader = {
+    margin: 0,
+    padding: 0,
+    color: "#FFFF",
+    textDecoration: "none",
+  };
+
+  const linkStyle = {
+    margin: 0,
+    padding: 0,
+  };
 
   return (
     <div className="header">
@@ -52,10 +61,11 @@ const Header = () => {
         </div>
         <div className="profile-image-container">
           {token === null ? (
-            <Link to={"/login"}>
-              {" "}
-              <p className="not-logged">Hello, Sign In!</p>
-            </Link>
+            <div className="not-logged">
+              <Link style={linkStyleHeader} to={"/login"}>
+                Hello, Sign In!
+              </Link>
+            </div>
           ) : (
             <>
               {" "}
@@ -66,7 +76,12 @@ const Header = () => {
               <div className="dropdown">
                 <CaretDown size={40} />
                 <div className="dropdown-content">
-                  <a href="#">Profile</a>
+                  <a href="#">
+                    {" "}
+                    <Link style={linkStyle} to={"/profile"}>
+                      Profile
+                    </Link>
+                  </a>
                   <a href="#">My Products</a>
                   <a onClick={handleLogout}>Logout</a>
                 </div>

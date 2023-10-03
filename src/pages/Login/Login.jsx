@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Button from "../../components/Button/Button";
@@ -13,8 +14,14 @@ const Login = () => {
   const [messageErrorSignup, setMessageErrorSignup] = useState("");
   const [isLoadingLogin, setIsLoadingLogin] = useState(false);
   const [isLoadingSignup, setIsLoadingSignup] = useState(false);
-  const { setUser, setToken } = useStateContext();
+  const { setUser, setToken, token } = useStateContext();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, []);
 
   //LOGIN SECTION //
   const [emailLogin, setEmailLogin] = useState("");
@@ -80,6 +87,7 @@ const Login = () => {
     setIsLoadingSignup(true);
     if (passwordSignup !== passwordVerify) {
       setMessageErrorSignup("The passwords must be the same!");
+      setIsLoadingSignup(false);
       return;
     }
 
