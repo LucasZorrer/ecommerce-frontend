@@ -1,3 +1,105 @@
 .profile-content {
-    color: #FFF;
+  margin-top: 2rem;
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  flex-direction: row;
+  color: #fff;
+}
+
+.aside {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  border-right: solid 3px gray;
+  position: relative;
+  transition: border-right-color 0.3s;
+}
+
+.aside .profile-title {
+  width: 100%;
+  text-align: center;
+  font-size: 1.8rem;
+  color: #fff;
+  font-weight: bold;
+}
+
+.user-content {
+  flex-grow: 1;
+}
+
+.top-content {
+  display: flex;
+  margin-left: 8rem;
+  align-items: center;
+}
+
+.top-content p {
+  font-size: 4rem;
+  margin-left: 4rem;
+}
+
+.logout-option {
+  display: flex;
+  flex-direction: row;
+  margin-top: 8rem;
+  margin-left: 3rem;
+  align-items: center;
+}
+
+.logout-option p {
+  margin-left: 1rem;
+  font-size: 1.8rem;
+}
+
+.profile-image {
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.inputs {
+  width: 100%;
+  height: 100%;
+  margin-top: 4rem;
+}
+
+.input-user {
+  display: flex;
+  align-items: center;
+  margin-left: 10rem;
+  margin-top: 2rem;
+}
+
+.profile-content .input-user label {
+  font-size: 2rem;
+  margin-right: 2rem;
+  flex: 1;
+}
+
+.profile-content .input-user input {
+  width: 50%;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  text-indent: 1rem;
+  height: 2.5rem;
+  flex: 2;
+  margin-right: 20rem;
+}
+
+.input-user input:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+  color: rgb(22, 22, 22);
+}
+
+.input-user input:focus-within {
+  outline: none;
+  border: solid 2px #d95d39;
 }

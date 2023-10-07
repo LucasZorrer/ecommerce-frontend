@@ -82,7 +82,12 @@ const Header = () => {
                       Profile
                     </Link>
                   </a>
-                  <a href="#">My Products</a>
+                  <a href="#">
+                    {" "}
+                    <Link style={linkStyle} to={"/myproducts"}>
+                      My Products
+                    </Link>
+                  </a>
                   <a onClick={handleLogout}>Logout</a>
                 </div>
               </div>

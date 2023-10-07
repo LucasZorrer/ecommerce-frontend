@@ -1,20 +1,31 @@
+import { Link } from "react-router-dom";
 import "./links.css";
+
+const linkStyle = {
+  margin: 0,
+  padding: 0,
+};
 
 const Links = () => {
   return (
     <div className="links-container">
       <div className="links">
         <div className="link">
-          <a href="#">PÁGINA INICIAL</a>
+          <a href="#">
+            {" "}
+            <Link style={linkStyle} to={"/"}>
+              HOME
+            </Link>
+          </a>
         </div>
         <div className="link">
-          <a href="#">CATEGORIAS</a>
+          <a href="#">CATEGORIES</a>
         </div>
         <div className="link">
-          <a href="#">PRODUTOS</a>
+          <a href="#">PRODUCTS</a>
         </div>
         <div className="link">
-          <a href="#">CONTATO</a>
+          <a href="#">CONTACT</a>
         </div>
       </div>
     </div>
