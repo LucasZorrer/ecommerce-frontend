@@ -103,3 +103,15 @@
   outline: none;
   border: solid 2px #d95d39;
 }
+
+.button-profile {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.button-profile div {
+  width: 30%;
+}

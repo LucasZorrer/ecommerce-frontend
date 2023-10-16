@@ -1,16 +1,27 @@
-import "./profile.css";
-import Header from "../../components/Header/Header";
-import Links from "../../components/Links/Links";
 import {
   ArrowCircleLeft,
   Heart,
   ShoppingCartSimple,
   User,
 } from "@phosphor-icons/react";
+import { useState } from "react";
 import AsideOption from "../../components/AsideOption/AsideOption";
-import Input from "../../components/Input/Input";
+import Button from "../../components/Button/Button";
+import Header from "../../components/Header/Header";
+import Links from "../../components/Links/Links";
+import { useStateContext } from "../../contexts/ContextProvider";
+import "./profile.css";
+import Modal from "../../components/Modal/Modal";
 
 const Profile = () => {
+  const [isLoadingChange, setIsLoadingChange] = useState(false);
+  const { user } = useStateContext();
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleChange = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <>
       <Header />
@@ -44,20 +55,28 @@ const Profile = () => {
           </div>
 
           <div className="inputs">
-            <div className="input-user">
-              <label htmlFor={"name"}>Nome:</label>
-              <input id="name" value={"Lucas"} />
-            </div>
-            <div className="input-user">
-              <label htmlFor={"email"}>Email:</label>
-              <input id="email" value={"lucas@gmail.com"} disabled/>
-            </div>
-            <div className="input-user">
-              <label htmlFor={"name"}>Password:</label>
-              <input id="name" value={"Lucas"} />
-            </div>
+            <form onSubmit={handleChange}>
+              <div className="input-user">
+                <label htmlFor={"name"}>Nome:</label>
+                <input id="name" value={"Lucas"} />
+              </div>
+              <div className="input-user">
+                <label htmlFor={"email"}>Email:</label>
+                <input id="email" value={"lucas@gmail.com"} disabled />
+              </div>
+              <div className="input-user">
+                <label htmlFor={"name"}>Password:</label>
+                <input id="name" type="password" value={"Lucas"} />
+                <button onClick={() => setOpenModal(true)}>Open Modal</button>
+              </div>
+
+              <div className="button-profile">
+                <Button name={"Change"} isLoading={isLoadingChange} />
+              </div>
+            </form>
           </div>
         </div>
+        <Modal openModal={openModal} />
       </div>
     </>
   );
