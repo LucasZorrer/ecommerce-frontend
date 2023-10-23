@@ -1,5 +1,9 @@
+import { ShoppingCart } from "@phosphor-icons/react";
 import "./product.css";
-const Product = () => {
+// eslint-disable-next-line react/prop-types
+const Product = ({ showCart = true, name, image, price }) => {
+
+  console.log(image)
   return (
     <div className="product-container">
       <div className="img-container">
@@ -10,14 +14,18 @@ const Product = () => {
       </div>
       <div className="info-container">
         <div className="product-info">
-          <p>Notebook</p>
+          <p>{name}</p>
           <strong>
-            R$<span>150,00.</span>
+            R$<span>{price}.</span>
           </strong>
         </div>
-        <div className="cart-container">
-          <img src="https://media.istockphoto.com/id/1206806317/vector/shopping-cart-icon-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=1RRQJs5NDhcB67necQn1WCpJX2YMfWZ4rYi1DFKlkNA=" />
-        </div>
+        {showCart ? (
+          <div className="cart-container">
+            <ShoppingCart size={32} />
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

@@ -4,7 +4,18 @@ const apiAuth = axios.create({
   baseURL: `http://localhost:4001/`,
 });
 
+const apiMain = axios.create({
+  baseURL: `http://localhost:4000/`,
+});
+
+
 apiAuth.interceptors.request.use((config) => {
+  const token = localStorage.getItem("ACCESS_TOKEN");
+  config.headers.Authorization = `Bearer ${token}`;
+  return config;
+});
+
+apiMain.interceptors.request.use((config) => {
   const token = localStorage.getItem("ACCESS_TOKEN");
   config.headers.Authorization = `Bearer ${token}`;
   return config;
@@ -28,4 +39,4 @@ axios.interceptors.response.use(
   }
 );
 
-export default apiAuth;
+export {apiAuth, apiMain};

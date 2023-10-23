@@ -1,12 +1,11 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 import { useStateContext } from "../../contexts/ContextProvider";
-import apiAuth from "../../helpers/axiosClient";
+import { apiAuth } from "../../helpers/axiosClient";
 import "./login.css";
 
 const Login = () => {

@@ -11,12 +11,9 @@ const Links = () => {
     <div className="links-container">
       <div className="links">
         <div className="link">
-          <a href="#">
-            {" "}
-            <Link style={linkStyle} to={"/"}>
-              HOME
-            </Link>
-          </a>
+          <Link style={linkStyle} to={"/"}>
+            HOME
+          </Link>
         </div>
         <div className="link">
           <a href="#">CATEGORIES</a>

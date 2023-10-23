@@ -6,7 +6,7 @@ import {
 } from "@phosphor-icons/react";
 import { useEffect } from "react";
 import { useStateContext } from "../../contexts/ContextProvider";
-import apiAuth from "../../helpers/axiosClient";
+import { apiAuth } from "../../helpers/axiosClient";
 import "./header.css";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -18,7 +18,7 @@ const Header = () => {
     apiAuth.get("/user").then(({ data }) => {
       setUser(data);
     });
-  }, []);
+  }, [setUser]);
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -41,8 +41,10 @@ const Header = () => {
   };
 
   const linkStyle = {
-    margin: 0,
-    padding: 0,
+  padding: "12px 16px",
+  textDecoration: "none",
+  display: "block",
+  color: "#000",
   };
 
   return (
@@ -68,7 +70,6 @@ const Header = () => {
             </div>
           ) : (
             <>
-              {" "}
               <img
                 src="https://i.pinimg.com/1200x/a7/cb/fa/a7cbfaaf0c56b3d80328fdad51b48f78.jpg"
                 alt=""
@@ -76,18 +77,12 @@ const Header = () => {
               <div className="dropdown">
                 <CaretDown size={40} />
                 <div className="dropdown-content">
-                  <a href="#">
-                    {" "}
-                    <Link style={linkStyle} to={"/profile"}>
-                      Profile
-                    </Link>
-                  </a>
-                  <a href="#">
-                    {" "}
-                    <Link style={linkStyle} to={"/myproducts"}>
-                      My Products
-                    </Link>
-                  </a>
+                  <Link style={linkStyle} to={"/profile"}>
+                    Profile
+                  </Link>{" "}
+                  <Link style={linkStyle} to={"/myproducts"}>
+                    My Products
+                  </Link>
                   <a onClick={handleLogout}>Logout</a>
                 </div>
               </div>

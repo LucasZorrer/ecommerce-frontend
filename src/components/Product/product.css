@@ -1,5 +1,5 @@
 .product-container {
-  width: 28%;
+  width: 20%;
   display: flex;
   flex-direction: column;
   margin: 1rem;
@@ -27,22 +27,17 @@
 .cart-container {
   position: relative;
   background-color: #d95d39;
-  width: 12%;
+  width: 16%;
   color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 15px;
-  top: -25px;
-  right: -15px;
+  border-radius: 50%;
+  top: -30px;
+  right: -10px;
 }
 
-.cart-container img {
-  background-color: #d95d39;
-  width: 60%;
-  height: 60%;
-  border-radius: 50%;
-}
+
 
 .not-logged {
   width: 100%;
