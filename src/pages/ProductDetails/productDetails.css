@@ -1,0 +1,27 @@
+.product-details-container {
+    color: #FFF;
+    margin-top: 4rem;
+}
+
+.product-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.image-container{
+    width: 40%;
+    margin-left: 15rem;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+}
+
+.description-container {
+    width: 60%;
+    margin-left: 6rem;   
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}

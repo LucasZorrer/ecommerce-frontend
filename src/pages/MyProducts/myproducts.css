@@ -8,8 +8,12 @@
   flex-direction: column;
 }
 
-.myProducts button {
-  margin-top: 2rem;
+.productButton {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.productButton a {
   cursor: pointer;
   border-radius: 10px;
   color: #fff;
@@ -17,8 +21,10 @@
   background-color: #d95d39;
   height: 3rem;
   border: none;
+  padding: 0.5rem;
+  text-decoration: none;
 }
 
-.myProducts button:hover {
+.productButton a:hover {
   background-color: #812f18;
 }

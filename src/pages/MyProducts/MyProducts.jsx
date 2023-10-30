@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./myproducts.css";
 import { useStateContext } from "../../contexts/ContextProvider";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { apiMain } from "../../helpers/axiosClient";
 import Header from "../../components/Header/Header";
 import Links from "../../components/Links/Links";
@@ -35,7 +35,9 @@ const MyProducts = () => {
       <Header />
       <Links />
       <h1>My Products</h1>
-      <button>Create a new Product</button>
+      <div className="productButton">
+        <Link to={"/createProduct"}>CREATE A NEW PRODUCT</Link>
+      </div>
       <div className="products">
         {products !== null
           ? products.map((product) => (

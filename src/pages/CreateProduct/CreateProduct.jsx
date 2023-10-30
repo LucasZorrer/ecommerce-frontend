@@ -63,6 +63,7 @@ const CreateProduct = () => {
       .then((response) => {
         if (response.data.success) {
           toast.success(response.data.message);
+          navigate("/myproducts");
         } else {
           toast.error(response.data.message);
         }

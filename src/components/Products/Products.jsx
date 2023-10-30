@@ -1,7 +1,23 @@
+import { useEffect, useState } from "react";
 import Product from "../Product/Product";
 import "./products.css";
+import { apiMain } from "../../helpers/axiosClient";
 
 const Products = () => {
+  const [products, setProducts] = useState(null);
+  useEffect(() => {
+    apiMain
+      .get(`/listProducts`)
+      .then((response) => {
+        if (response.data.success) {
+          setProducts(response.data.products);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div className="container">
       <div className="categories-container">
@@ -17,12 +33,18 @@ const Products = () => {
         </div>
       </div>
       <div className="products">
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
+        {products !== null
+          ? products.map((product) => (
+              <Product
+                showCart={false}
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                price={product.price}
+                image={product.image}
+              />
+            ))
+          : null}
       </div>
     </div>
   );

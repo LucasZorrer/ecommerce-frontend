@@ -1,10 +1,13 @@
-import "./App.css";
-import Routes from "./routes/routes";
+import { Outlet } from "react-router-dom";
+import Header from "./components/Header/Header";
+import Links from "./components/Links/Links";
 
 function App() {
   return (
     <div className="App">
-      <Routes />
+      <Header />
+      <Links />
+      <Outlet />
     </div>
   );
 }
