@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
-import "./myproducts.css";
-import { useStateContext } from "../../contexts/ContextProvider";
 import { Link, useNavigate } from "react-router-dom";
-import { apiMain } from "../../helpers/axiosClient";
-import Header from "../../components/Header/Header";
-import Links from "../../components/Links/Links";
 import Product from "../../components/Product/Product";
+import { useStateContext } from "../../contexts/ContextProvider";
+import { apiMain } from "../../helpers/axiosClient";
+import "./myproducts.css";
 
 const MyProducts = () => {
   const { token, user } = useStateContext();
@@ -32,8 +30,6 @@ const MyProducts = () => {
 
   return (
     <div className="myProducts">
-      <Header />
-      <Links />
       <h1>My Products</h1>
       <div className="productButton">
         <Link to={"/createProduct"}>CREATE A NEW PRODUCT</Link>
@@ -47,6 +43,7 @@ const MyProducts = () => {
                 name={product.name}
                 price={product.price}
                 image={product.image}
+                id={product.id}
               />
             ))
           : null}

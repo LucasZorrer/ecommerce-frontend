@@ -7,11 +7,9 @@ import {
 import { useState } from "react";
 import AsideOption from "../../components/AsideOption/AsideOption";
 import Button from "../../components/Button/Button";
-import Header from "../../components/Header/Header";
-import Links from "../../components/Links/Links";
+import Modal from "../../components/Modal/Modal";
 import { useStateContext } from "../../contexts/ContextProvider";
 import "./profile.css";
-import Modal from "../../components/Modal/Modal";
 
 const Profile = () => {
   const [isLoadingChange, setIsLoadingChange] = useState(false);
@@ -24,8 +22,6 @@ const Profile = () => {
 
   return (
     <>
-      <Header />
-      <Links />
       <div className="profile-content">
         <div className="aside">
           <div className="profile-title">

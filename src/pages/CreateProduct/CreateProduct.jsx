@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../../components/Header/Header";
-import Links from "../../components/Links/Links";
 import { useStateContext } from "../../contexts/ContextProvider";
 import "./createProduct.css";
 
@@ -78,8 +76,6 @@ const CreateProduct = () => {
 
   return (
     <div className="createProduct-container">
-      <Header />
-      <Links />
       <div className="product-form">
         <form onSubmit={handleCreateProduct} encType="multipart/form-data">
           {" "}
