@@ -79,7 +79,7 @@ const Header = () => {
                 <div className="dropdown-content">
                   <Link style={linkStyle} to={"/profile"}>
                     Profile
-                  </Link>{" "}
+                  </Link>
                   <Link style={linkStyle} to={"/myproducts"}>
                     My Products
                   </Link>
